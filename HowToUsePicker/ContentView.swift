@@ -9,8 +9,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection = 0
+    
+    let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Picker(selection: $selection, label: Text("Pick ")) {
+                ForEach(0..<days.count) { index in
+                    Text(self.days[index]).tag(index)
+                }
+            }
+            Text("Selected day: \(days[selection])")
+        }.padding()
     }
 }
 
